@@ -1,0 +1,17 @@
+#include "Sed.hpp"
+
+int main(int argc, char *argv[])
+{
+	(void)argc;
+	if (Sed::CheckInput(argv + 1) == false)
+		return 0;
+	Sed sed(argv[1]);
+	if (sed.IsOpen())
+		sed.replace(argv[2], argv[3]);
+	else
+	{
+		cout << "Error open files\n";
+		return 1;
+	}
+	return 0;
+}
