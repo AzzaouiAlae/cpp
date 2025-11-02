@@ -1,8 +1,8 @@
 #include "HumanB.hpp"
 
-void HumanB::setWeapon(Weapon weapen)
+void HumanB::setWeapon(Weapon& weapen)
 {
-	this->weapen = Weapon::CreateNewWeapon(weapen.getType());
+	this->weapen = &weapen;
 }
 
 HumanB::HumanB(string name)
@@ -19,7 +19,4 @@ void HumanB::attack()
 		<< endl;
 }
 
-HumanB::~HumanB()
-{
-	delete weapen;
-}
+

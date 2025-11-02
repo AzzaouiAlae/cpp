@@ -11,8 +11,7 @@ class Weapon
 	string type;
 public:
 	Weapon(string type);
-	static Weapon *CreateNewWeapon(string type);
-	string getType();
+	const string& getType() const;
 	void setType(string type);
 };
 

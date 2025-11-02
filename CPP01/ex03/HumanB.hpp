@@ -8,8 +8,7 @@ class HumanB
 	string name;
 public:
 	HumanB(string name);
-	~HumanB();
-	void setWeapon(Weapon weapen);
+	void setWeapon(Weapon &weapen);
 	void attack();
 };
 
