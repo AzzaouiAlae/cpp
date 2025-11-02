@@ -2,7 +2,7 @@ SRC = main.cpp Harl.cpp
 OBJ = main.o Harl.o
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
-NAME = Harl
+NAME = harlFilter
 
 all : $(NAME)
 
