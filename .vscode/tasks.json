@@ -3,11 +3,11 @@
         {
             "type": "cppbuild",
             "label": "hello",
-            "command": "make",
+            "command": "make && make clean",
             "args": [
             ],
             "options": {
-                "cwd": "${workspaceFolder}/CPP01/ex03/"
+                "cwd": "${workspaceFolder}/CPP02/ex03/"
             },
             "problemMatcher": [
                 "$gcc"
