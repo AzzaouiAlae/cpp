@@ -26,7 +26,7 @@ public:
 	Fixed operator-(const Fixed& obj);
 	Fixed operator*(const Fixed& obj);
 	Fixed operator/(const Fixed& obj);
-	Fixed operator++();
+	Fixed operator++(); 
 	Fixed operator++(int); 
 	Fixed operator--();
 	Fixed operator--(int);

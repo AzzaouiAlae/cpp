@@ -17,13 +17,10 @@ Fixed::Fixed(const int number)
 Fixed::Fixed(const float number)
 {
 	cout << "Float constructor called\n";
-	value = ((int)number << fBits);
-	float f = number - (int)number;
-	for(int i = 0; i < fBits; i++)
-		f *= 2;
-	if (f - (float)((int)f) >= 0.5f)
-		f += 1;
-	value += f;
+	float n = number * (1 << Fixed::f);
+	if (n - (int)n >= 0.5f)
+		n += 1;
+	value = n;
 }
 
 Fixed::Fixed(const Fixed& obj)
@@ -58,16 +55,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	float v = ((int)value >> fBits);
-	float f = value - ((int)v << fBits);
-	for(int i = 0; i < fBits; i++)
-		f /= 2;
-	return v + f;
+	return (float)value * pow(2, -fBits);
 }
 
 int Fixed::toInt() const
 {
-	return value >> fBits;
+	return value * pow(2, -fBits);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj)

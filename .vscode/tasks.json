@@ -7,7 +7,7 @@
             "args": [
             ],
             "options": {
-                "cwd": "${workspaceFolder}/CPP02/ex03/"
+                "cwd": "${workspaceFolder}/CPP01/ex05/"
             },
             "problemMatcher": [
                 "$gcc"

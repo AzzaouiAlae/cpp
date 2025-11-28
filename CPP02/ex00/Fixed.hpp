@@ -10,8 +10,8 @@ class Fixed {
 	int value;
 	static const int fBits;
 public:
-	Fixed();
-	Fixed(const Fixed& obj);
+	Fixed();//x
+	Fixed(const Fixed& obj); //x
 	Fixed& operator=(const Fixed& obj);
 	~Fixed();
 	int getRawBits(void) const;

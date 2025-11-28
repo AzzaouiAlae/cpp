@@ -20,32 +20,26 @@ void Harl::error() {
 		"I want to speak to the manager now.\n\n";
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
+
 void Harl::complain()
 {
 	switch (level)
 	{
 	case 1:
 		debug();
-		info();
-		warning();
-		error();
-		break;
 	case 2:
 		info();
-		warning();
-		error();
-		break;
 	case 3:
 		warning();
-		error();
-		break;
 	case 4:
 		error();
-		break;
 	default:
 		break;
 	}
 }
+#pragma GCC diagnostic pop
 
 void Harl::InitPair(int i, string name) 
 {

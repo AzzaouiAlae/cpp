@@ -15,4 +15,6 @@ public:
 	void setType(string type);
 };
 
+const char *str = "2132";
+char const *str;
 #endif
