@@ -1,8 +1,8 @@
 SRC = main.cpp 
 OBJ = main.o 
 CXX = c++
-CXXFLAGS = -g3 -Wall -Wextra -Werror -std=c++98 
-NAME = RPN
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Ofast
+NAME = PmergeMe
 
 all : $(NAME)
 

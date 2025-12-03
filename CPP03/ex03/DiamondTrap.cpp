@@ -44,7 +44,7 @@ void DiamondTrap::PrintStatus()
 DiamondTrap::DiamondTrap(const string& name): ClapTrap(name + "_clap_name"),
 FragTrap(name), ScavTrap(name), name(name)
 {
-	cout << "DiamondTrap "<< name << " created\n";
+	cout << "DiamondTrap "<< this->name << " created\n";
 }
 
 DiamondTrap::~DiamondTrap()

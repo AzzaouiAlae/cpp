@@ -5,6 +5,7 @@ name(AFormName), signGrade(signGrade), executeGrade(executeGrade)
 {
 	CheckGrade(0);
 	isSigned = false;
+	cout << "AForm: " << this << endl;
 }
 
 void AForm::CheckGrade(int change)

@@ -2,7 +2,9 @@
 
 PresidentialPardonForm::PresidentialPardonForm
 (const string& target):AForm("PresidentialPardon", 25, 5), target(target)
-{}
+{
+	cout << "PresidentialPardonForm: " << this << endl;
+}
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {}

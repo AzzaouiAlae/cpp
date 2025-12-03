@@ -6,15 +6,16 @@ class AForm {
 	bool isSigned;
 	const int signGrade;
 	const int executeGrade;
-	AForm();
+	
 	AForm& operator=(const AForm& obj);
 protected:
 	void CheckGrade(int change);
 	void CheckExecute(Bureaucrat const & executor) const;
-	virtual void exeForm() const = 0;
+	void exeForm() const {}
 public:
+	AForm();
 	AForm(const string& AFormName, int SignGrade, int ExecuteGrade);
-	virtual ~AForm();
+	~AForm();
 	AForm(const AForm& obj);
 	string getName() const;
 	bool IsSigned() const;

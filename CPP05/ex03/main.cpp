@@ -153,27 +153,34 @@ void Test12()
 
 int main()
 {
-	Test1();
-	cout << '\n';
-	Test2();
-	cout << '\n';
-	Test3();
-	cout << '\n';
-	Test4();
-	cout << '\n';
-	Test5();
-	cout << '\n';
-	Test6();
-	cout << '\n';
-	Test7();
-	cout << '\n';
-	Test8();
-	cout << '\n';
-	Test9();
-	cout << '\n';
-	Test10();
-	cout << '\n';
-	Test11();
-	cout << '\n';
-	Test12();
+	// Test1();
+	// cout << '\n';
+	// Test2();
+	// cout << '\n';
+	// Test3();
+	// cout << '\n';
+	// Test4();
+	// cout << '\n';
+	// Test5();
+	// cout << '\n';
+	// Test6();
+	// cout << '\n';
+	// Test7();
+	// cout << '\n';
+	// Test8();
+	// cout << '\n';
+	// Test9();
+	// cout << '\n';
+	// Test10();
+	// cout << '\n';
+	// Test11();
+	// cout << '\n';
+	// Test12();
+
+	// PresidentialPardonForm aaa = PresidentialPardonForm("");
+	// AForm &f =  aaa;
+
+	// PresidentialPardonForm *aa = dynamic_cast<PresidentialPardonForm *>(&f);
+
+	// (void)aa;
 }

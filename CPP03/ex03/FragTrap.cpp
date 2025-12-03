@@ -5,7 +5,8 @@ FragTrap::FragTrap()
 
 FragTrap::FragTrap(const string& name): ClapTrap(name, 100, 50, 20)
 {
-	cout << "FragTrap "<< name << " created\n";
+	
+	cout << "FragTrap "<< this->name << " created\n";
 }
 
 void FragTrap::attack(const string& target)

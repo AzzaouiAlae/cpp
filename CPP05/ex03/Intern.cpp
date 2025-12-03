@@ -39,10 +39,6 @@ AForm* Intern::createPresidentialPardon(const string& target)
 
 AForm* Intern::makeForm(const string& formName, const string& target)
 {
-	std::map<string, func> a;
-	a["debug"] = &createPresidentialPardon;
-	cout << a[formName];
-
 	for(int i = 0; i < 3; i++) {
 		if (formName == p[i].first)
 		{
