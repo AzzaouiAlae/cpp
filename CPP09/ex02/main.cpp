@@ -7,6 +7,7 @@
 #include <cstdlib>   // rand, srand
 #include <ctime>
 #include <iterator>
+#include <map>
 
 template <typename ForwardIterator>
 bool isSorted(ForwardIterator first, ForwardIterator last) {
@@ -49,6 +50,12 @@ public:
 	{
 		Count++;
 		return value < other.value;
+	}
+
+	bool operator!=(const Int &other) const
+	{
+		Count++;
+		return value != other.value;
 	}
 	
 	Int(int value = 0) : c(0), value(value)
@@ -143,23 +150,37 @@ void restB(std::vector<Int>& a, std::vector<Int>& b, std::vector<Int>& restorB)
 		restorB.push_back(b[n]);
 }
 
+int lvl = 0;
+
+void PrintList(std::vector<Int> nums)
+{
+	std::cout << "----------- " << lvl << " -----------\n";
+	std::cout << nums[0];
+	for(int i = 1; i < (int)nums.size(); i++)
+		std::cout <<  ", " << nums[i];
+	std::cout << "\n"; 
+}
+
 void MergeInsert(std::vector<Int > &nums)
 {
 	if (nums.size() < 2)
 		return;
+	// PrintList(nums);
 	std::vector<Int> a, b, restoredB;
 	MakePairs(nums, a, b);
+	// lvl++;
 	MergeInsert(a);
+	// lvl--;
 	restB(a, b, restoredB);
 	nums.clear();
 	nums.push_back(restoredB[0]);
 	int tk_ = 0, tk, m, u = 0;
 	const int bN = restoredB.size();
 	const int aN = a.size();
-	for(int k = 1; tk_ < bN; ++k)
+	for(int k = 2; tk_ < bN - 1; ++k)
 	{
 		tk = t_sequence(k);
-		m = std::min(tk, bN - 1);;
+		m = std::min(tk + 1, bN);;
 		while(u < tk && u < aN) {
             nums.push_back(a[u++]);
         }
@@ -169,103 +190,86 @@ void MergeInsert(std::vector<Int > &nums)
 	}
 	for (;u < aN; u++)
 		nums.push_back(a[u]);
+	
+	// PrintList(nums);
+
 }
 
+#include <fstream>
+#include <unistd.h>
 
-
-void MergeInsertion2(std::vector<Int>& nums)
+void print(Int i)
 {
-	int n = nums.size() - 1;
+	std::string fileName =  "file.log";
 
-	if (n < 2)
-		return;
-	std::vector<Int> a, b, restoredB;
-	a.reserve((n + 1) / 2);
-	b.reserve((n + 1) / 2 + 1);
-	restoredB.reserve((n + 1) / 2 + 1);
-	for(int i = 0; i < n ; i += 2)
-	{
-		Int& var1 = nums[i];
-		Int& var2 = nums[i + 1];
-		if (var1 < var2)
-		{
-			var2.push(a.size());
-			a.push_back(var2);
-			b.push_back(var1);
-		}
-		else
-		{
-			var1.push(a.size());
-			a.push_back(var1);
-			b.push_back(var2);
-		}
-	}
+	std::ofstream os(fileName.c_str(), std::ios::app);
+	os << i << "\n";
+	os.close();
+}
 
-	if ((n + 1) % 2)
-		b.push_back(nums[n]);
-	MergeInsertion2(a);
-	n = a.size();
-	for(int i = 0; i < n; i++)
-	{
-		int idx = a[i].pop();
-		restoredB.push_back(b[idx]);
-	}
-	if (n < (int)b.size())
-		restoredB.push_back(b[n]);
-	nums.clear();
-	nums.push_back(restoredB[0]);
-	int k = 2, tk, tk_ = t_sequence(1), m, u = 0;
-	int aN = a.size();
-	n = restoredB.size();
-	while(tk_ < n)
-	{
-		tk = t_sequence(k);
-		m = std::min(tk, n - 1);
-		while(u < m && u < aN)
-			nums.push_back(a[u++]);
-		for(int i = m; i > tk_ + 1; i--)
-		{
-			std::vector<Int>::iterator it = 
-			std::lower_bound(nums.begin(), nums.end(), restoredB[i - 1]);
-			nums.insert(it, restoredB[i - 1]);
-		}
-		tk_ = tk;
-		k++;
-	}
-	while(u < aN)
-		nums.push_back(a[u++]);
+void logFile(std::vector<Int>& nums, std::vector<Int>& nums1)
+{
+	std::string fileName =  "file.log";
+	std::ofstream os(fileName.c_str());
+	os << "Origin nums\n";
+	os.close();
+	std::for_each(nums.begin(), nums.end(), print);
+	os.open(fileName.c_str(), std::ios::app);
+	os << "\nAfter MergeInsert\n";
+	os.close();
+	std::for_each(nums1.begin(), nums1.end(), print);
+	os.open(fileName.c_str(), std::ios::app);
+	os << "\n";
+	os.close();
 }
 
 int main()
 {
-	std::srand(std::time(0));
-    
-	std::vector<Int> nums;
-
-    for (int i = 0; i < 3000; ++i)
-    {
-        int value = std::rand();
-        nums.push_back(value);
-    }
-
-	struct timeval tv, tv2;
-
-    gettimeofday(&tv, NULL);
-	// std::sort(nums.begin(), nums.end());
-	// MergeInsert(nums);
-	MergeInsertion2(nums);
-	
-	gettimeofday(&tv2, NULL);
-
-	long mcs1 = (long)tv.tv_sec * 1000 * 1000 + tv.tv_usec;
-	long mcs2 = (long)tv2.tv_sec * 1000 * 1000 + tv2.tv_usec;
-
-	long time = mcs2 - mcs1;
-	std::cout << "Number of Operations: "<< Int::Count ;
-	std::string s = isSorted(nums.begin(), nums.end()) ? "true\n" : "false\n";
-	std::cout << "\n" <<"isSorted: " << s << "Time: " << time << " ms\n\n";
-
-	// Print(nums, 0, 0, nums.size());
-	std::cout << "\n";
-	return 0;
+	for(int i = 0; i < 1000; i++)
+	{
+		std::srand(std::time(0));
+		std::vector<Int> nums;
+		std::vector<Int> nums1;
+		nums.clear();
+    	for (int i = 0; i < 21; ++i)
+    	{
+    	    int value = std::rand();
+			value = value % 1000;
+    	    nums.push_back(value);
+    	}
+		nums1 = nums;
+		struct timeval tv, tv2;
+		Int::Count = 0;
+    	gettimeofday(&tv, NULL);
+		MergeInsert(nums1);
+		gettimeofday(&tv2, NULL);
+		long mcs1 = (long)tv.tv_sec * 1000 * 1000 + tv.tv_usec;
+		long mcs2 = (long)tv2.tv_sec * 1000 * 1000 + tv2.tv_usec;
+		long time = mcs2 - mcs1;
+		std::cout << "lgorithm steps: " << Int::Count << "\n";
+		std::string s = isSorted(nums1.begin(), nums1.end()) ? "true\n" : "false\n";
+		std::cout <<"isSorted: " << s << "Time: " << time << " ms\n";
+		if (nums.size() != nums1.size())
+			std::cout << "num1 has wrong size: " <<  nums1.size() << " sould be: " << nums.size() << '\n';
+		std::sort(nums.begin(), nums.end());
+		std::string fileName =  "file.log";
+		{
+			logFile(nums, nums1);
+			
+		}
+		for (int i = 0; i < (int)nums.size(); i++)
+		{
+			if (nums[i] != nums1[i])
+			{
+				std::cout << "Corrupted output\n";
+				logFile(nums, nums1);
+				exit(0);
+			}
+			
+		}
+		if (s == "false\n" || nums.size() != nums1.size())
+				exit(0);
+		
+		std::cout << "\n";
+	}
 }
