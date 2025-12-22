@@ -7,14 +7,14 @@ ClapTrap::ClapTrap(const string& name, int hitPoints, int energyPoints, int atta
 		name(name), hitPoints(hitPoints), energyPoints(energyPoints),
 		attackDamage(attackDamage)
 {
-	cout << "ClapTrap "<< name << " created\n";
+	cout << "ClapTrap "<< name << " created " << this << "\n";
 }
 
 ClapTrap::ClapTrap(string name) : name(name),
 		hitPoints(10), energyPoints(10),
 		attackDamage(0)
 {
-	cout << "ClapTrap "<< name << " created\n";
+	cout << "ClapTrap "<< name << " created " << this << "\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& obj) : name(obj.name), hitPoints(obj.hitPoints),

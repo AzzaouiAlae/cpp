@@ -1,11 +1,53 @@
 #include "DiamondTrap.hpp"
 
+class base {
+	public:
+	int a;
+	base(int n = -1) 
+	{
+		a = n;
+		cout << "base: " << this << " ";
+		cout << a << endl;
+	}
+};
+class A: public base{
+	public:
+	int b;
+	A() : base(10)
+	{
+		cout << "A   : " << this << " ";
+		cout << a << endl;
+	}
+};
+class B: public base{
+	public:
+	int c;
+	B(): base(20)
+	{
+		cout << "B   : " << this << " ";
+		cout << a << endl;
+	}
+};
+
+class C:  public A, public B{
+	public:
+	int D;
+	C()
+	{
+		cout << "C   : " << this << endl;
+		// cout << a << endl;
+	}
+};
+
+
 int main()
 {
-	{
-		DiamondTrap obj("robot");
-		cout << "\n";
-	}
+	// {
+	// 	C c;
+
+	// 	// DiamondTrap obj("robot");
+	// 	// cout << "\n";
+	// }
 	cout << "---------------------9\n";
 	{
 		DiamondTrap obj("robot2");
@@ -34,6 +76,7 @@ int main()
 		DiamondTrap obj("robot7");
 		cout << "\n";
 		obj.attack("any robot");
+		obj.PrintStatus();
 		cout << "\n";
 	}
 	cout << "---------------------41\n";

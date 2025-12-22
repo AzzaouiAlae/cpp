@@ -13,7 +13,6 @@ Cat::~Cat()
 
 Cat::Cat(const Cat& obj): Animal(obj.type)
 {
-	brain = new Brain();
 	*(this->brain) = *(obj.brain);
 	cout << "Cat object copyed\n";
 }

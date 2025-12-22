@@ -62,12 +62,12 @@ void GeneralTest()
 {
 	PmergeMe obj;
 
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < 50000; i++)
 	{
 		std::srand(std::time(0));
-		std::deque<Integer> nums, nums1, nums2;
+		std::vector<Integer> nums, nums1, nums2;
 		nums.clear();
-		for (int i = 0; i < 3000; ++i)
+		for (int i = 0; i < 21; ++i)
 		{
 			int value = std::rand();
 			value = value % 1000;
@@ -114,10 +114,10 @@ void GeneralTest()
 int main(int argC, char *argV[])
 {
 	(void)argC; (void)argV;
-	// GeneralTest();
 	PmergeMe mergeInsertion;
 	try {
-		mergeInsertion.MISort(argV);
+		GeneralTest();
+		// mergeInsertion.MISort(argV);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}

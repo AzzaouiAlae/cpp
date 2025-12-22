@@ -10,7 +10,6 @@
 #include <iterator>
 #include <deque>
 #include <sstream>
-
 #include <fstream>
 #include <unistd.h>
 
@@ -19,7 +18,6 @@
 class PmergeMe
 {
 	size_t t_sequence(size_t k);
-
 public:
 	class Int
 	{

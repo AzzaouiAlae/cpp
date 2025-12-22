@@ -93,12 +93,30 @@ void Test4()
 	}
 }
 
+
+#include <sstream>
+
+
 int main()
 {
-	Test1();
-	Test2();
-	Test3();
-	Test4();
+	// Test1();
+	// Test2();
+	// Test3();
+	// Test4();
+
+	// std::vector<int> v;
+	// v.reserve(1025);
+	// for(int i = 0, j = -1; i < 1027; i++)
+	// {
+	// 	if ((int)v.capacity() != j)
+	// 	{
+	// 		j = v.capacity();
+	// 		cout << j << endl;
+	// 	}
+	// 	v.push_back(i);
+	// }
+
+	
 
 	return 0;
 }

@@ -65,14 +65,12 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 	{
 		tk = t_sequence(k);
 		m = std::min(tk + 1, bN);
-		while (u < tk && u < aN - 1)
+		while (u < tk && u < aN)
 			nums.push_back(a[u++]);
-		if (tk + 1 >= bN && u < aN && aN < bN)
-			nums.push_back(a[u++]);
-		for (int i = m, j = 0; i > tk_ + 1; i--, j++)
+		for (int i = m, j = nums.size(); i > tk_ + 1; i--)
 		{
 			std::vector<Integer>::iterator it =
-				std::lower_bound(nums.begin(), nums.end() - j, restoredB[i - 1]);
+				std::lower_bound(nums.begin(), nums.begin() + j, restoredB[i - 1]);
 			nums.insert(it, restoredB[i - 1]);
 		}
 		tk_ = tk;
@@ -132,14 +130,12 @@ void PmergeMe::MergeInsert(std::deque<Integer> &nums)
 	{
 		tk = t_sequence(k);
 		m = std::min(tk + 1, bN);
-		while (u < tk && u < aN - 1)
+		while (u < tk && u < aN)
 			nums.push_back(a[u++]);
-		if (tk + 1 >= bN && u < aN && aN < bN)
-			nums.push_back(a[u++]);
-		for (int i = m, j = 0; i > tk_ + 1; i--, j++)
+		for (int i = m, j = nums.size(); i > tk_ + 1; i--)
 		{
 			std::deque<Integer>::iterator it =
-				std::lower_bound(nums.begin(), nums.end() - j, restoredB[i - 1]);
+				std::lower_bound(nums.begin(), nums.begin() + j, restoredB[i - 1]);
 			nums.insert(it, restoredB[i - 1]);
 		}
 		tk_ = tk;

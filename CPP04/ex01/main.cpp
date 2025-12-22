@@ -219,9 +219,13 @@ int main()
 	// ShallowCopyTests1();
 	// ShallowCopyTests2();
 	
-	Animal *a = new Cat();
-	Dog *B = static_cast<Dog*>(a);
-	B->makeSound();
-	B->makeSound2();
-	return 0;
+	// Animal *a = new Cat();
+	// Dog *B = static_cast<Dog*>(a);
+	// B->makeSound();
+	// B->makeSound2();
+	// return 0;
+	Cat a;
+	Cat c;
+	Cat b(Cat(c));   // 1st call
+// b = Cat(a);  
 }

@@ -5,7 +5,8 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(const string& name): ClapTrap(name, 100, 50, 20)
 {
-	cout << "ScavTrap "<< name << " created\n";
+	energyPoints = 500;
+	cout << "ScavTrap "<< name << " created " << this << "\n";
 }
 
 void ScavTrap::attack(const string& target)
@@ -63,7 +64,7 @@ void ScavTrap::guardGate()
 ScavTrap::ScavTrap(const ScavTrap& obj): 
 ClapTrap(obj.name, obj.hitPoints, obj.energyPoints, obj.attackDamage)
 {
-	cout << "ScavTrap: " << name << " copyed\n";
+	cout << "ScavTrap: " << name << " copyed\n" << this << "\n";
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& obj)

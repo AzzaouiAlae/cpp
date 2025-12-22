@@ -167,6 +167,17 @@ void BitcoinExchange::throwErrors(long& num, char *end, string& completeNum)
 		err << "Error: too large number."; 
 		throw  BitconinException(err.str());
 	}
+	int c = 0;
+	for(int i = 0; completeNum[i]; i++)
+	{
+		if (completeNum[i] == '.')
+			c++;
+	}
+	if (c > 1)
+	{
+		err << "Error: " << completeNum << " is not a number.";
+		throw  BitconinException(err.str());
+	}
 	if (end[0] != 0 && end[0] != '.')
 	{
 		err << "Error: " << completeNum << " is not a number.";

@@ -1,7 +1,7 @@
 SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
 OBJ = main.o Animal.o Dog.o Cat.o WrongCat.o WrongAnimal.o Brain.o
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -g
 NAME = brain
 
 all : $(NAME)
