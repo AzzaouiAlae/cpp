@@ -47,6 +47,7 @@ void PmergeMe::restB(std::vector<Integer> &a, std::vector<Integer> &b, std::vect
 	if ((int)b.size() > n)
 		restorB.push_back(b[n]);
 }
+int lvl = 0;
 
 void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 {
@@ -54,7 +55,9 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 		return;
 	std::vector<Integer> a, b, restoredB;
 	MakePairs(nums, a, b);
+	lvl++;
 	MergeInsert(a);
+	lvl--;
 	restB(a, b, restoredB);
 	nums.clear();
 	nums.push_back(restoredB[0]);
@@ -67,7 +70,7 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 		m = std::min(tk + 1, bN);
 		while (u < tk && u < aN)
 			nums.push_back(a[u++]);
-		for (int i = m, j = nums.size(); i > tk_ + 1; i--)
+		for (int i = m, j = tk_ + m + (tk + 1 > bN); i > tk_ + 1; i--)
 		{
 			std::vector<Integer>::iterator it =
 				std::lower_bound(nums.begin(), nums.begin() + j, restoredB[i - 1]);
