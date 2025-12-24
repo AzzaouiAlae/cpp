@@ -61,8 +61,8 @@ float log2(float num)
 void GeneralTest()
 {
 	PmergeMe obj;
-	int numberOfTests = 50000;
-	int numberOfItems = 21;
+	int numberOfTests = 500000;
+	int numberOfItems = 33;
 	int maxGenNum = numberOfItems * 100;
 
 	for (int i = 0; i < numberOfTests; i++)
@@ -96,7 +96,7 @@ void GeneralTest()
 		int NumberOfComparisons = Integer::Count;
 		int maxNumberOfComparisons = ceil(ItemsCount * log2(ItemsCount) - ItemsCount * 1.25);
 
-
+		std::cout << i + 1 << '\n';
 		std::cout << "max number of Comparisons: " << maxNumberOfComparisons << "\n";
 		std::cout << "Algorithm Comparisons: " << NumberOfComparisons << "\n";
 		std::string s = isSorted(numsToSort.begin(), numsToSort.end()) ? "true\n" : "false\n";
@@ -104,17 +104,20 @@ void GeneralTest()
 		if (numsToSort.size() != originalNums.size())
 			std::cout << "num1 has wrong size: " << originalNums.size() << " sould be: " << numsToSort.size() << '\n';
 		std::sort(numsSortedByCpp.begin(), numsSortedByCpp.end());
-		logFile(originalNums, numsToSort, numsSortedByCpp);
+		if (s == "false\n" || numsToSort.size() != originalNums.size() || NumberOfComparisons > maxNumberOfComparisons)
+		{
+			logFile(originalNums, numsToSort, numsSortedByCpp);
+			exit(0);
+		}
 		for (int i = 0; i < (int)numsToSort.size(); i++)
 		{
 			if (numsToSort[i] != numsSortedByCpp[i])
 			{
 				std::cout << "Corrupted output\n";
+				logFile(originalNums, numsToSort, numsSortedByCpp);
 				exit(0);
 			}
 		}
-		if (s == "false\n" || numsToSort.size() != originalNums.size() || NumberOfComparisons > maxNumberOfComparisons)
-			exit(0);
 		std::cout << "\n";
 	}
 }
@@ -127,7 +130,7 @@ int main(int argC, char *argV[])
 	PmergeMe mergeInsertion;
 	try {
 		GeneralTest();
-		// mergeInsertion.MISort(argV);
+		mergeInsertion.MISort(argV);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
