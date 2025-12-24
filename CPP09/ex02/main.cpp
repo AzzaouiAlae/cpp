@@ -95,7 +95,7 @@ void GeneralTest()
 		int NumberOfComparisons = Integer::Count;
 		int maxNumberOfComparisons = ceil(ItemsCount * log2(ItemsCount) - ItemsCount * 1.25);
 
-		
+
 		std::cout << "max number of Comparisons: " << maxNumberOfComparisons << "\n";
 		std::cout << "Algorithm Comparisons: " << NumberOfComparisons << "\n";
 		std::string s = isSorted(numsToSort.begin(), numsToSort.end()) ? "true\n" : "false\n";
@@ -103,7 +103,7 @@ void GeneralTest()
 		if (numsToSort.size() != originalNums.size())
 			std::cout << "num1 has wrong size: " << originalNums.size() << " sould be: " << numsToSort.size() << '\n';
 		std::sort(numsSortedByCpp.begin(), numsSortedByCpp.end());
-		logFile(originalNums, originalNums, numsSortedByCpp);
+		logFile(originalNums, numsToSort, numsSortedByCpp);
 		for (int i = 0; i < (int)numsToSort.size(); i++)
 		{
 			if (numsToSort[i] != numsSortedByCpp[i])
