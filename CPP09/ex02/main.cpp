@@ -63,6 +63,7 @@ void GeneralTest()
 	PmergeMe obj;
 	int numberOfTests = 50000;
 	int numberOfItems = 21;
+	int maxGenNum = numberOfItems * 100;
 
 	for (int i = 0; i < numberOfTests; i++)
 	{
@@ -72,7 +73,7 @@ void GeneralTest()
 		for (int i = 0; i < numberOfItems; ++i)
 		{
 			int value = std::rand();
-			value = value % 1000;
+			value = value % maxGenNum;
 			if (value < 0)
 				value *= -1;
 			numsToSort.push_back(value);
