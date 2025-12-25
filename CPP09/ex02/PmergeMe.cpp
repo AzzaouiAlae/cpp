@@ -47,7 +47,6 @@ void PmergeMe::restB(std::vector<Integer> &a, std::vector<Integer> &b, std::vect
 	if ((int)b.size() > n)
 		restorB.push_back(b[n]);
 }
-int lvl = 0;
 
 void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 {
@@ -55,9 +54,7 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 		return;
 	std::vector<Integer> a, b, restoredB;
 	MakePairs(nums, a, b);
-	lvl++;
 	MergeInsert(a);
-	lvl--;
 	restB(a, b, restoredB);
 	nums.clear();
 	nums.push_back(restoredB[0]);
