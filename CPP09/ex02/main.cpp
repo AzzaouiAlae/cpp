@@ -53,31 +53,51 @@ void logFile(std::vector<Integer> &nums, std::vector<Integer> &nums1, std::vecto
 	os.close();
 }
 
-float log2(float num)
+int computeSum(int n)
 {
-	return std::log(num) / std::log(2.0);
+    int sum = 0;
+
+    for (int k = 1; k <= n; ++k)
+    {
+        double value = log2((3.0 / 4.0) * k);
+        sum += static_cast<int>(std::ceil(value));
+    }
+
+    return sum;
 }
 
-void GeneralTest()
+std::vector<std::vector<Integer> > getAllArrangements(int n, int max)
+{
+	std::vector<Integer> list;
+
+	for(int i = 1; i <= n; i++)
+	{
+		list.push_back(i);
+	}
+    std::vector<std::vector<Integer> > allArrangements;
+
+    do {
+        allArrangements.push_back(list);
+    } while (std::next_permutation(list.begin(), list.end()) && (int)allArrangements.size() < max);
+    return allArrangements;
+}
+
+void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
 {
 	PmergeMe obj;
-	int numberOfTests = 500000;
-	int numberOfItems = 33;
-	int maxGenNum = numberOfItems * 100;
 
-	for (int i = 0; i < numberOfTests; i++)
+	std::vector<Integer> list, numsToSort, originalNums, numsSortedByCpp;
+
+	for(int i = 1; i <= numberOfItems; i++)
 	{
-		std::srand(std::time(0));
-		std::vector<Integer> numsToSort, originalNums, numsSortedByCpp;
-		numsToSort.clear();
-		for (int i = 0; i < numberOfItems; ++i)
-		{
-			int value = std::rand();
-			value = value % maxGenNum;
-			if (value < 0)
-				value *= -1;
-			numsToSort.push_back(value);
-		}
+		list.push_back(i);
+	}
+
+	bool var = true;
+
+	for (int i = 0; i < numberOfTests && var; i++)
+	{
+		numsToSort = list;
 		originalNums = numsToSort;
 		numsSortedByCpp = numsToSort;
 		struct timeval tv, tv2;
@@ -92,10 +112,10 @@ void GeneralTest()
 		long time = mcs2 - mcs1;
 
 
-		float ItemsCount = numberOfItems;
 		int NumberOfComparisons = Integer::Count;
-		int maxNumberOfComparisons = ceil(ItemsCount * log2(ItemsCount) - ItemsCount * 1.25);
+		int maxNumberOfComparisons = computeSum(numberOfItems);
 
+		
 		std::cout << i + 1 << '\n';
 		std::cout << "max number of Comparisons: " << maxNumberOfComparisons << "\n";
 		std::cout << "Algorithm Comparisons: " << NumberOfComparisons << "\n";
@@ -119,17 +139,31 @@ void GeneralTest()
 			}
 		}
 		std::cout << "\n";
+		for(int i = 0; i <= skip; i++)
+		{
+			var = std::next_permutation(list.begin(), list.end());
+			if (!var)
+				break;
+		}
 	}
 }
-
-
 
 int main(int argC, char *argV[])
 {
 	(void)argC; (void)argV;
 	PmergeMe mergeInsertion;
 	try {
-		GeneralTest();
+		for(int i = 1; i <= 33; i++)
+		{
+			if (i < 7)
+			{
+				GeneralTest(i, 100000);
+			}
+			else
+			{
+				GeneralTest(i, 100000, i * log2(i));
+			}
+		}
 		mergeInsertion.MISort(argV);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;

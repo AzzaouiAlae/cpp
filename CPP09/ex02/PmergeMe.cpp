@@ -70,7 +70,7 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 		m = std::min(tk + 1, bN);
 		while (u < tk && u < aN)
 			nums.push_back(a[u++]);
-		for (int i = m, j = nums.size(); i > tk_ + 1; i--)
+		for (int i = m, j = tk_ + m + (tk_ > bN); i > tk_ + 1; i--)
 		{
 			std::vector<Integer>::iterator it =
 				std::lower_bound(nums.begin(), nums.begin() + j, restoredB[i - 1]);
