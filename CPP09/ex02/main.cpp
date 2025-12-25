@@ -66,21 +66,6 @@ int computeSum(int n)
     return sum;
 }
 
-std::vector<std::vector<Integer> > getAllArrangements(int n, int max)
-{
-	std::vector<Integer> list;
-
-	for(int i = 1; i <= n; i++)
-	{
-		list.push_back(i);
-	}
-    std::vector<std::vector<Integer> > allArrangements;
-
-    do {
-        allArrangements.push_back(list);
-    } while (std::next_permutation(list.begin(), list.end()) && (int)allArrangements.size() < max);
-    return allArrangements;
-}
 
 void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
 {
@@ -148,21 +133,6 @@ void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
 	}
 }
 
-long factorial(long n)
-{
-    if (n == 0)
-	{
-        return 1;
-	}
-
-	long f = factorial(n - 1);
-	if (f == -1 || f / n > INT64_MAX / n)
-	{
-	
-	}
-		return -1;
-    return n * f;
-}
 
 int main(int argC, char *argV[])
 {
