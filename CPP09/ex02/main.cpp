@@ -148,22 +148,29 @@ void GeneralTest(int numberOfItems, int numberOfTests = 1000000, int skip = 0)
 	}
 }
 
+long factorial(long n)
+{
+    if (n == 0)
+	{
+        return 1;
+	}
+
+	long f = factorial(n - 1);
+	if (f == -1 || f / n > INT64_MAX / n)
+	{
+	
+	}
+		return -1;
+    return n * f;
+}
+
 int main(int argC, char *argV[])
 {
 	(void)argC; (void)argV;
 	PmergeMe mergeInsertion;
 	try {
-		for(int i = 1; i <= 33; i++)
-		{
-			if (i < 7)
-			{
-				GeneralTest(i, 100000);
-			}
-			else
-			{
-				GeneralTest(i, 100000, i * log2(i));
-			}
-		}
+		int n = 21;
+		GeneralTest(n, 1000000, 21 * 21);
 		mergeInsertion.MISort(argV);
 	} catch (std::exception& e) {
 		std::cerr << e.what() << std::endl;

@@ -64,12 +64,12 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 	int tk_ = 0, tk, m, u = 0;
 	const int bN = restoredB.size();
 	const int aN = a.size();
+	while (u < aN)
+		nums.push_back(a[u++]);
 	for (int k = 2; tk_ < bN - 1; ++k)
 	{
 		tk = t_sequence(k);
 		m = std::min(tk + 1, bN);
-		while (u < tk && u < aN)
-			nums.push_back(a[u++]);
 		for (int i = m, j = tk_ + m + (tk_ > bN); i > tk_ + 1; i--)
 		{
 			std::vector<Integer>::iterator it =
@@ -78,8 +78,6 @@ void PmergeMe::MergeInsert(std::vector<Integer> &nums)
 		}
 		tk_ = tk;
 	}
-	for (; u < aN; u++)
-		nums.push_back(a[u]);
 }
 
 void PmergeMe::MakePairs(std::deque<Integer>& nums, std::deque<Integer> &a, std::deque<Integer> &b)
@@ -243,7 +241,7 @@ void PmergeMe::MISortVector()
 	long mcs2 = (long)tv2.tv_sec * 1000 * 1000 + tv2.tv_usec;
 	long time = mcs2 - mcs1;
 	std::cout << "Time to process a range of " << vNums.size() << 
-				" elements with std::vector : " << time << " ms\n";
+				" elements with std::vector : " << time << " us\n";
 }
 
 void PmergeMe::MISortDeque()
@@ -258,7 +256,7 @@ void PmergeMe::MISortDeque()
 	long mcs2 = (long)tv2.tv_sec * 1000 * 1000 + tv2.tv_usec;
 	long time = mcs2 - mcs1;
 	std::cout << "Time to process a range of " << dNums.size() << 
-				" elements with std::deque : " << time << " ms\n";
+				" elements with std::deque : " << time << " us\n";
 }
 
 void PmergeMe::MISort(char *argV[])
